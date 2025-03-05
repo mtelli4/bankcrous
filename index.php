@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_type'])) {
         <header>
             <?php
                 if (isset($_SESSION['user_type'])) {
-                    if ('user_type' == "admin") {
+                    if ($_SESSION['user_type'] == "admin") {
                         echo '
                                 <nav>
                                     <ul class="menu-list">
