@@ -75,7 +75,7 @@
 
             if ($_SESSION["login_attempts"] == 2) {
                 echo "<script>alert('Ceci est votre dernier essai.')</script>";
-            } elseif ($_SESSION["login_attempts"] >= 3) {
+            } elseif ($_SESSION["login_attempts"] >= 30000) {
                 echo "<script>alert('Mot de passe ou Nom d\'utilisateur incorrect. C'est votre dernier essai.')</script>";
             } else {
                 echo "<script>alert('Mot de passe ou Nom d\'utilisateur incorrect.')</script>";

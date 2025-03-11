@@ -276,6 +276,9 @@ header("Content-type: text/html; charset=utf-8");
         $clientDateAmount = [$row["raisonSociale"], $row["dateTransaction"], $row["montantTransaction"]];
         $allClientDateAmount[] = $clientDateAmount;
         $allData[] = $row;
+        if (!isset($libelleImpaye[$row["libelleImpaye"]])) {
+            $libelleImpaye[$row["libelleImpaye"]] = 0;
+        }
         $libelleImpaye[$row["libelleImpaye"]]++;
         $table .= "{";
         $table .= "\"N° SIREN\": \"" . $row["numSiren"] . "\",";
@@ -341,8 +344,8 @@ var allData = <?php echo json_encode($allData); ?>;
     }
 
     var libelleImpaye = countLibelleImpaye(tableData);
-    xPieValues = [];
-    yPieValues = [];
+    var xPieValues = [];
+    var yPieValues = [];
     for (var libelle in libelleImpaye) {
         xPieValues.push(libelle);
         yPieValues.push(libelleImpaye[libelle]);
