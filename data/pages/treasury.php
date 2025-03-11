@@ -156,7 +156,7 @@ if (!isset($_SESSION["user_id"])) {
                 </div>
                 <div class="chart-container">
                     <canvas id="myChart"></canvas>
-                    <button idd="export-chart-pdf" data-title="Graphique Trésorerie">Exporter en PDF</button>
+                    <button id="export-chart-pdf" data-title="Graphique Trésorerie">Exporter en PDF</button>
                 </div>
             </article>
         </section>
