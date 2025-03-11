@@ -8,6 +8,7 @@ var table2 = [];
 // Ajout d'un écouteur d'événement sur le select
 if (nbElementSelect !== null) {
     nbElementSelect.addEventListener("change", function () {
+        console.log(nbElementSelect.value);
         itemsPerPage = parseInt(nbElementSelect.value);
         if (itemsPerPage === 0 || itemsPerPage === null || itemsPerPage === undefined) {
             itemsPerPage = 1;
@@ -82,8 +83,7 @@ function renderTableData() {
         //console.log(rowData);
         var row = document.createElement("tr");
         row.classList.add("table-row");
-        //console.log(rowData);
-        if (!hidden) {
+        if (hidden) {
             row.onclick = function () {
                 var hiddenTable = this.nextSibling.firstChild;
                 hiddenTable.classList.toggle("hidden");
@@ -390,7 +390,7 @@ function sortImpayesTable(elementName, state) {
 }
 
 function sortTable(elementName, state) {
-    if (elementMane === "Montant" && "Sens" in table[0] === true) {
+    if (elementName === "Montant" && "Sens" in table[0] === true) {
         table.sort((a, b) => {
             if (parseFloat(a["Sens"]+a[elementName]) > parseFloat(b["Sens"]+b[elementName])) {
                 return -1;
@@ -411,7 +411,7 @@ function sortTable(elementName, state) {
             return 0;
         });
     }
-    if (stsats === true) {
+    if (state === true) {
         table.reverse();
     }
     //console.log(tableData);

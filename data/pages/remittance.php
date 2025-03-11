@@ -72,10 +72,10 @@ if (!isset($_SESSION["user_id"])) {
                 <div class="user-settings">
                     <label for="itemsPerPage">Nombre d'éléments par page :</label>
                     <select name="itemsPerPage" id="itemsPerPage">
-                        <option value="2">1</option>
+                        <option value="1">1</option>
                         <option value="2" selected>2</option>
-                        <option value="2">3</option>
-                        <option value="2">4</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                     </select>
                 </div>
                 <div class="nbrResult">
