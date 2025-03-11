@@ -324,6 +324,22 @@ var allData = <?php echo json_encode($allData); ?>;
     var chartChoice = document.querySelectorAll("input[name=\"chart-choice\"]");
     var xValues = <?php echo $xValues; ?>;  
     var raisonSociales = <?php echo json_encode($raisonSociales); ?>;
+    chartChoice.forEach(function(choice) {
+        choice.addEventListener("change", function() {
+            if (choice.value == "bar-chart") {
+                document.querySelector(".chart-container #myChart").style.display = "none";
+                document.querySelector(".chart-container #myBarChart").style.display = "block";
+                barChart();
+            } else {
+                document.querySelector(".chart-container #myChart").style.display = "block";
+                document.querySelector(".chart-container #myBarChart").style.display = "none";
+                lineChart();
+            }
+        });
+    });
+
+    // Call the default chart function
+    lineChart();
 </script>
 <script src="../script/chart.js"></script>
 <script>
