@@ -43,14 +43,19 @@ if (!isset($_SESSION["user_id"])) {
                                 </form>
                                 <select name="chosenCompany" id="chosenCompany" onchange="chosenCompany()">
                                     <option value="" selected="selected">Entreprise</option>
-                                    <option value="all">All</option>
                             ';
+                            $selectedCompany = isset($_POST["chosenCompany"]) ? $_POST["chosenCompany"] : "";
+
+                            echo '<option value="all"' . ($selectedCompany == "all" ? ' selected="selected"' : '') . '>All</option>';
+
                             $req = $mysqli->prepare("SELECT raisonSociale 
                                                     FROM client;");
                             $req->execute();    
                             $result = $req->get_result();
                             while ($row = $result->fetch_assoc()) {
-                                echo "<option value='" . $row['raisonSociale'] . "'>" . $row['raisonSociale'] . "</option>";
+                                $selected = ($selectedCompany == $row['raisonSociale']) ? ' selected="selected"' : '';
+                                echo "<option value='" . $row['raisonSociale'] . "'" . $selected . ">" . $row['raisonSociale'] . "</option>";
+                                // echo "<option value='" . $row['raisonSociale'] . "'>" . $row['raisonSociale'] . "</option>";
                             }
                             echo "</select>";
                         }
@@ -163,8 +168,8 @@ if (!isset($_SESSION["user_id"])) {
         $req->bind_param("ss", $_SESSION["user_id"], $_SESSION["user_id"]);
     }
     if ($_SESSION["user_type"] == "productOwner") {
-        if (isset($_GET["chosenCompanie"]) && $_GET["chosenCompanie"] != "all") {
-            $chosenCompany = htmlspecialchars($_GET["chosenCompany"]);
+        if (isset($_POST["chosenCompany"]) && $_POST["chosenCompany"] != "all" && $_POST["chosenCompany"] != "") {
+            $chosenCompany = htmlspecialchars($_POST["chosenCompany"]);
             $req = $mysqli->prepare("
                 SELECT c.numSiren, c.raisonSociale, t.numRemise, COUNT(t.numRemise) AS nbTransaction, r.dateRemise, r.montantRemise, r.deviseRemise, r.sensRemise
                 FROM client c
@@ -255,7 +260,6 @@ if (!isset($_SESSION["user_id"])) {
             var chosenCompany = document.getElementById("chosenCompany").value;
             var chosenCompanyInput = document.getElementById("chosenCompanyInput");
             chosenCompanyInput.value = chosenCompany;
-            console.log(chosenCompanyInput.value);
             document.getElementById("choseCompanyForm").submit();
         }
 
