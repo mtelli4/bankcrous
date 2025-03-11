@@ -65,7 +65,7 @@
             $row = $result->fetch_assoc();
             if ($password == $row["motDePasse"]) {
                 $_SESSION["user_id"] = $row["idUtilisateur"];
-                $_SESSION["user_type"] = $row["typeUser"];
+                $_SESSION["user_type"] = $row["typeUtilisateur"];
 
                 header("Location: ../../index.php");
                 
