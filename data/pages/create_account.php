@@ -62,11 +62,11 @@
         // Verification of the existence of the post variables
         if(isset($_POST['num_siren']) && isset($_POST['raison_sociale']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirm_password'])){
             // Recuperation of the post variables
-            $num_siren = $_GET['num_siren'];
+            $num_siren = $_POST['num_siren'];
             $raison_sociale = $_POST['raison_sociale'];
-            $username = $_POST['user'];
-            $password = $_POST['motdepasse'];
-            $confirm_password = $_GET['confirm_password'];
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $confirm_password = $_POST['confirm_password'];
             if ($password == $confirm_password) {
                 include('../script_php/cnx.php');
                 // Verification of the existence of the account
