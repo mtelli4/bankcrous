@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$user = "root";
-$pwd = "";
-$dbname = "bankcrous";
+$user = "admin";
+$pwd = "admin";
+$dbname = "bankrous";
 
 try {
 	$mysqli = new mysqli($host,$user,$pwd,$dbname);
